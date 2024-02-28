@@ -17,6 +17,20 @@ class Game {
   }
 
   registerEvents() {
+    var self = this;
+    document.addEventListener('keydown', function(event) {
+      var key = event.key;
+      var currentSymbol = self.currentSymbol;
+      var currentSymbolText = currentSymbol.textContent;
+  
+      if (key === currentSymbolText) {
+        self.success();
+      } else {
+        self.fail();
+      }
+    });
+  }
+  
     /*
       TODO:
       Написать обработчик события, который откликается
@@ -25,7 +39,7 @@ class Game {
       При неправильном вводе символа - this.fail();
       DOM-элемент текущего символа находится в свойстве this.currentSymbol.
      */
-  }
+  
 
   success() {
     if(this.currentSymbol.classList.contains("symbol_current")) this.currentSymbol.classList.remove("symbol_current");
